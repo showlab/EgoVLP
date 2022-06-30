@@ -1,11 +1,10 @@
 # EgoVLP: Egocentric Video-Language Pretraining
 
-[project page](https://qinghonglin.github.io/EgoVLP/) | [arXiv](https://arxiv.org/pdf/2206.01670.pdf)
+[Project page](https://qinghonglin.github.io/EgoVLP/) | [arXiv](https://arxiv.org/pdf/2206.01670.pdf)
 
+> **TL;DR:** We pioneer Egocentric Video-Language Pretraining from pretraining dataset, model and development benchmark; the resulted pretrained model exhibits strong performance on six downstream tasks across three egocentric datasets.
 
 <img src="/figures/egovlp_framework.jpg" alt="EgoVLP" style="zoom:67%;" />
-
-**TL;DR:** We pioneer Egocentric Video-Language Pretraining from pretraining dataset, model and development benchmark; the resulted pretrained model exhibits strong performance on six downstream tasks across three egocentric datasets.
 
 ## 📢 News
 
@@ -59,9 +58,9 @@
 - For the usage of EgoMCQ, please refer to `./data_loader/EgoClip_EgoMCQ_dataset.py`.
 
 ## 🏋️‍️ Pretraining
-- We pretrain EgoVLP on 4 nodes, each with 8 A100 GPUs (10 epochs in about two days).
+> We pretrain EgoVLP on 4 nodes, each with 8 A100 GPUs (10 epochs in about two days).
 
-`python3 -m torch.distributed.launch 
+- Train on EgoClip:  `python3 -m torch.distributed.launch 
   --nnodes=$HOST_NUM 
   --node_rank=$INDEX 
   --master_addr $CHIEF_IP 
@@ -69,6 +68,90 @@
   --master_port 8081 
   ./run/train_egoclip.py --config ./configs/pt/egoclip.json`
   
-- You can monitor the EgoMCQ performance of the VLP model by tensorboard:
+- Test on EgoMCQ:  `python3 -m torch.distributed.launch 
+  --nnodes=$HOST_NUM 
+  --node_rank=$INDEX 
+  --master_addr $CHIEF_IP 
+  --nproc_per_node $HOST_GPU_NUM 
+  --master_port 8081 
+  ./run/train_egoclip.py --config ./configs/eval/egomcq.json`
+  
+- Monitor the EgoMCQ performance during pretraining: `tensorboard --logdir ./results  --bind_all`
 
-`tensorboard --logdir ./results  --bind_all`
+## 🗄 Pretrained Weights
+- We have released our pretrained EgoVLP model (EgoClip w/ EgoNCE) in [Google Drive](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing).
+
+## 🔧 Downstream Tasks
+### EPIC-Kitchens MIR
+
+- **Results:**
+
+| Model   | Mode                         | # Frames | Video-Text PT     | Pretrained Weight | mAP (V2T) | mAP (T2V) | mAP (Avg) | nDCG (V2T) | nDCG (T2V) | nDCG (Avg) |
+| ------- | ---------------------------- | -------- | ----------------- | ------------ | --------- | --------- | --------- | ---------- | ---------- | ---------- |
+| EgoVLP  | Zero-shot                    | 4        | EgoClip w/ EgoNCE |[Google Driver](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing)            | 19.4      | 13.9      | 16.6      | 24.1       | 22.0       | 23.1       |
+| EgoVLP  | Fine-tuning w/ MI-MM          | 16       | EgoClip w/ EgoNCE |[Google Driver](https://drive.google.com/file/d/1-YEHZ-WBCnO-LZEsDF14jo-pLSJKTp2G/view?usp=sharing)              | 49.9      | 40.5      | 45.0      | 60.9       | 57.9       | 59.4       |
+| EgoVLP* | Fine-tuning w/ Adaptive MI-MM | 16       | EgoClip w/ EgoNCE |[Google Driver](https://drive.google.com/file/d/1-SOQeXc-xSn544sJzgFLhC95hkQsm0BR/view?usp=sharing)              | 52.3      | 40.1      | 46.2      | 62.2       | 58.6       | 60.4       |
+| EgoVLP* | ⬆️ w/ Dual-softmax                | 16       | EgoClip w/ EgoNCE | ⬆️              | 53.8      | 40.9      | 47.4      | 63.3       | 59.6       | 61.4       |
+
+(*EgoVLP\* means our submission for [Multi-Instance Retrieval@EPIC-Kitchens Challenge 2022](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details)*)
+
+- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_epic.py --config ./configs/ft/epic.json`
+
+- Test: `python3 ./run/test_epic.py`
+
+### Charades-Ego
+- **Results:**
+
+| Model  | Mode        | # Frames | Video-Text PT     | Pretrained Weight | mAP  |
+| ------ | ----------- | -------- | ----------------- | ----------------- | ---- |
+| EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/108BR5TmIA-sfX3cXOW_wxtJtc4XhglO6/view?usp=sharing)                  | 25.0 |
+| EgoVLP | Fine-tuning | 16       | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)                  | 32.1 |
+
+- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_epic.py --config ./configs/ft/charades.json`
+
+- Test: `python3 ./run/test_charades.py`
+
+
+### NLQ
+- Extract video features: `python3 ./run/test_nlq.py --subsample 'text'`.
+- Extract text features: `python3 ./run/test_nlq.py --subsample 'video'`.
+- Fine-tune the [VSLNet](https://github.com/EGO4D/episodic-memory/tree/main/NLQ/VSLNet) by replacing its input features.
+
+### MQ
+- Extract video features: `python3 ./run/test_mq.py`.
+- Fine-tune the [VSGN](https://github.com/EGO4D/episodic-memory/tree/main/MQ) by replacing its input features.
+
+### OSSC
+- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_oscc.py --config ./configs/ft/oscc.json`
+
+### PNR
+- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_pnr.py --config ./configs/ft/pnr.json`
+
+## 🎓 Citation
+
+If you find our work helps, please cite our paper.
+
+```bibtex
+@article{kevin2022egovlp,
+	title={Egocentric Video-Language Pretraining},
+	author={Kevin Qinghong Lin and Alex Jinpeng Wang and Mattia Soldan and Michael Wray and Rui Yan and Eric Zhongcong Xu and Difei Gao and Rongcheng Tu and Wenzhe Zhao and Weijie Kong and Chengfei Cai and Hongfa Wang and Dima Damen and Bernard Ghanem and Wei Liu and Mike Zheng Shou},
+	journal={arXiv preprint arXiv:2206.01670},
+	year={2022}
+}
+```
+
+## ✉️ Contact
+
+This repo is maintained by [Kevin](https://github.com/QinghongLin). Questions and discussions are welcome via kevin.qh.lin@gmail.com.
+
+We are willing to merge results and codes if transfer our EgoVLP to other egocentric tasks or datasets.
+
+## 🙏 Acknowledgements
+
+This codebase is based on [Frozen](https://github.com/m-bain/frozen-in-time). 
+
+Thanks to [Alex](https://github.com/fingerrec) for the help with Data Distributed Parallel implementation and [Mattia](https://github.com/Soldelli) for the help with NLQ and MQ benchmarks.
+
+## LICENSE
+
+MIT
