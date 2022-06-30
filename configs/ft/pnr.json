@@ -1,0 +1,76 @@
+{
+    "name": "PNR",
+    "n_gpu": 8,
+    "arch": {
+        "type": "FrozenInTime",
+        "args": {
+            "video_params": {
+                "model": "SpaceTimeTransformer",
+                "arch_config": "base_patch16_224",
+                "num_frames": 16,
+                "pretrained": true,
+                "time_init": "zeros"
+            },
+            "text_params": {
+                "model": "distilbert-base-uncased",
+                "pretrained": true,
+                "input": "text"
+            },
+            "projection": "minimal",
+            "projection_dim": 16,
+            "load_checkpoint": ""
+        }
+    },
+    "data_loader":
+                {
+                    "type": "MultiDistTextVideoDataLoader",
+                    "args":{
+                        "dataset_name": "Ego4D_PNR",
+                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data",
+                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/hand/",
+                        "shuffle": true,
+                        "num_workers": 16,
+                        "batch_size": 4,
+                        "split": "train",
+                        "subsample": 1,
+                        "text_params": {
+                            "input": "text"
+                        },
+                        "video_params": {
+                            "input_res": 224,
+                            "num_frames": 1,
+                            "loading": "lax"
+                        },
+                        "reader": "cv2"
+                    }
+                },
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 3e-5
+        }
+    },
+    "loss": {
+        "type": "CrossEntropy",
+        "args": {
+        }
+    },
+    "metrics": [
+        "pnr_metrics"
+     ],
+    "trainer": {
+        "epochs": 10,
+        "max_samples_per_epoch": 500000,
+        "save_dir": "/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP/results/PNR",
+        "save_period": 2,
+        "verbosity": 2,
+        "monitor": "min val_loss_0",
+        "early_stop": 10,
+        "init_val": false,
+        "neptune": false
+    },
+    "visualizer": {
+        "type": ""
+    }
+
+}

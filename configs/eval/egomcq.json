@@ -1,0 +1,78 @@
+{
+    "name": "EgoClip_4f",
+    "n_gpu": 8,
+    "arch": {
+        "type": "FrozenInTime",
+        "args": {
+            "video_params": {
+                "model": "SpaceTimeTransformer",
+                "arch_config": "base_patch16_224",
+                "num_frames": 4,
+                "pretrained": true,
+                "time_init": "zeros"
+            },
+            "text_params": {
+                "model": "distilbert-base-uncased",
+                "pretrained": true,
+                "input": "text"
+            },
+            "projection": "minimal",
+            "load_checkpoint" : "/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/pretrained/cc-webvid2m-4f_stformer_b_16_224.pth.tar"
+        }
+    },
+    "data_loader":
+            [
+                {
+                    "type": "MultiDistTextVideoDataLoader",
+                    "args":{
+                        "dataset_name": "EgoClip",
+                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data_chunked/",
+                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_toolbox/0_metadata/egovlp",
+                        "reader": "cv2_egoclip",
+                        "shuffle": true,
+                        "num_workers": 16,
+                        "batch_size": 16,
+                        "split": "train",
+                        "subsample": "mcq",
+                        "text_params": {
+                            "input": "text"
+                        },
+                        "video_params": {
+                            "input_res": 224,
+                            "num_frames": 4,
+                            "loading": "lax"
+                        },
+                        "neg_param": false
+                    }
+                }
+            ],
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 3e-5
+        }
+    },
+    "loss": {
+        "type": "EgoNCE",
+        "args": {
+        }
+    },
+    "metrics": [
+        "egomcq_accuracy_metrics"
+     ],
+    "trainer": {
+        "epochs": 0,
+        "max_samples_per_epoch": 500000,
+        "save_dir": "/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/results/EgoClip_4f",
+        "save_period": 1,
+        "verbosity": 2,
+        "monitor": "min val_loss_0",
+        "early_stop": 10,
+        "init_val": true,
+        "neptune": false
+    },
+    "visualizer": {
+        "type": ""
+    }
+
+}

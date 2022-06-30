@@ -1,0 +1,77 @@
+{
+    "name": "EpicKitchens_MIR_4f",
+    "n_gpu": 8,
+    "arch": {
+        "type": "FrozenInTime",
+        "args": {
+            "video_params": {
+                "model": "SpaceTimeTransformer",
+                "arch_config": "base_patch16_224",
+                "num_frames": 16,
+                "pretrained": true,
+                "time_init": "zeros"
+            },
+            "text_params": {
+                "model": "distilbert-base-uncased",
+                "pretrained": true,
+                "input": "text"
+            },
+            "projection": "minimal",
+            "load_checkpoint" : "/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0510_10/checkpoint-epoch1.pth"
+        }
+    },
+    "data_loader":
+            [
+                {
+                    "type": "MultiDistTextVideoDataLoader",
+                    "args":{
+                        "dataset_name": "EpicKitchens_MIR",
+                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-rgb-frames",
+                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations",
+                        "reader": "cv2_epic",
+                        "shuffle": true,
+                        "num_workers": 16,
+                        "batch_size": 4,
+                        "split": "train",
+                        "text_params": {
+                            "input": "text"
+                        },
+                        "video_params": {
+                            "input_res": 224,
+                            "num_frames": 16,
+                            "loading": "lax"
+                        }
+                    }
+                }
+            ],
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 3e-5
+        }
+    },
+    "loss": {
+        "type": "MaxMarginRankingLoss",
+        "args": {
+            "margin":0.2
+        }
+    },
+    "metrics": [
+        "mir_metrics"
+     ],
+    "trainer": {
+        "epochs": 100,
+        "max_samples_per_epoch": 500000,
+        "save_dir": "/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/results/EpicKitchens_MIR_4f",
+        "save_period": 2,
+        "verbosity": 2,
+        "monitor": "min val_loss_0",
+        "early_stop": 10,
+        "init_val": false,
+        "neptune": false
+    },
+    "visualizer": {
+        "type": ""
+    }
+
+}
