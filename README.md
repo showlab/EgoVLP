@@ -144,7 +144,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - **Preparation:**
  
 1. Make sure you have prepared the OSCC videos and metadata.
-2. Extract the clip frame via ./utils/oscc_meta.py
+2. Extract the clip frame via `./utils/oscc_meta.py`
 
 - Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_oscc.py --config ./configs/ft/oscc.json`
 
