@@ -87,7 +87,10 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - Monitor the EgoMCQ curve during pretraining: `tensorboard --logdir ./results  --bind_all`
 
 ## 🗄 Pretrained Weights
-- We have released our pretrained EgoVLP model (EgoClip w/ EgoNCE) in [Google Drive](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing).
+- We have released our pretrained EgoVLP model (EgoClip w/ EgoNCE) with best performance on EgoMCQ (90.7% inter-video & 57.2% intra-video) in [EgoVLP_best](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing).
+
+
+*This checkpoint is used for EPIC-Kitchens, NLQ, MQ, OSSC, and PNR tasks, except for Charades-Ego. Since we found that VLP (CC3M+WebVid2M, EgoClip) alway degrades significantly on Charades-Ego after the first epoch, we evaluate Charades-Ego using the first pretraining epoch weights of EgoVLP in [EgoVLP_epo1](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)*.
 
 ## 🔧 Downstream Tasks
 ### EPIC-Kitchens MIR
@@ -101,9 +104,9 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 
 | Model   | Mode                                              | # Frames | Video-Text PT     | Weights                                                 | mAP (V2T) | mAP (T2V) | mAP (Avg) | nDCG (V2T) | nDCG (T2V) | nDCG (Avg) |
 | ------- | ------------------------------------------------- | ------ | ----------------- | ------------------------------------------------------------ | --------- | --------- | --------- | ---------- | ---------- | ---------- |
-| EgoVLP  | Zero-shot                                         | 4      | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing) | 19.4      | 13.9      | 16.6      | 24.1       | 22.0       | 23.1       |
-| EgoVLP  | Fine-tuning w/<br /> MI-MM                        | 16     | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/1-YEHZ-WBCnO-LZEsDF14jo-pLSJKTp2G/view?usp=sharing) | 49.9      | 40.5      | 45.0      | 60.9       | 57.9       | 59.4       |
-| EgoVLP* | Fine-tuning w/ Adaptive-MI-MM + Dual-softmax | 16     | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/1-SOQeXc-xSn544sJzgFLhC95hkQsm0BR/view?usp=sharing) | **53.8**  | **40.9**  | **47.4**  | **63.3**   | **59.6**   | **61.4**   |
+| EgoVLP  | Zero-shot                                         | 4      | EgoClip w/ EgoNCE | [EgoVLP_best](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing) | 19.4      | 13.9      | 16.6      | 24.1       | 22.0       | 23.1       |
+| EgoVLP  | Fine-tuning w/<br /> MI-MM                        | 16     | EgoClip w/ EgoNCE | [EgoVLP_mir](https://drive.google.com/file/d/1-YEHZ-WBCnO-LZEsDF14jo-pLSJKTp2G/view?usp=sharing) | 49.9      | 40.5      | 45.0      | 60.9       | 57.9       | 59.4       |
+| EgoVLP* | Fine-tuning w/ Adaptive-MI-MM + Dual-softmax | 16     | EgoClip w/ EgoNCE | [EgoVLP_mir_plus](https://drive.google.com/file/d/1-SOQeXc-xSn544sJzgFLhC95hkQsm0BR/view?usp=sharing) | **53.8**  | **40.9**  | **47.4**  | **63.3**   | **59.6**   | **61.4**   |
 
 *EgoVLP\* means our submission for [Multi-Instance Retrieval@EPIC-Kitchens Challenge 2022](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details)*
 
@@ -121,8 +124,8 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 
 | Model  | Mode        | # Frames | Video-Text PT     | Weights | mAP  |
 | ------ | ----------- | -------- | ----------------- | ----------------- | ---- |
-| EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/108BR5TmIA-sfX3cXOW_wxtJtc4XhglO6/view?usp=sharing)                  | 25.0 |
-| EgoVLP | Fine-tuning w/ InfoNCE| 16       | EgoClip w/ EgoNCE | [Google Driver](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)                  | 32.1 |
+| EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [EgoVLP_epo1](https://drive.google.com/file/d/108BR5TmIA-sfX3cXOW_wxtJtc4XhglO6/view?usp=sharing)                  | 25.0 |
+| EgoVLP | Fine-tuning w/ InfoNCE| 16       | EgoClip w/ EgoNCE | [EgoVLP_charades](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)                  | **32.1** |
 
 - Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_epic.py --config ./configs/ft/charades.json`
 
