@@ -140,12 +140,16 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - Extract video features: `python3 ./run/test_mq.py`.
 - Fine-tune the [VSGN](https://github.com/EGO4D/episodic-memory/tree/main/MQ) by replacing its input video features.
 
-### OSSC
-- **Preparation:** Make sure you have prepared the OSSC videos and metadata.
+### OSCC
+- **Preparation:**
+ 
+1. Make sure you have prepared the OSCC videos and metadata.
+2. Extract the clip frame via ./utils/oscc_meta.py
+
 - Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_oscc.py --config ./configs/ft/oscc.json`
 
 ### PNR
-- **Preparation:** Make sure you have prepared the PNR videos and metadata.
+- **Preparation:** Same as OSCC.
 - Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_pnr.py --config ./configs/ft/pnr.json`
 
 ## 🎓 Citation
