@@ -66,7 +66,7 @@ pip install -r requirements.txt
   tag_noun                                        [192, 115, 12]  # the noun idx of the narration
   ```
   
-  The usage of `tag_verb` and `tag_noun` please refer [here](https://drive.google.com/file/d/168EJMyUyE76KVVp-qLu6qNTLHZ7zyLhu/view?usp=sharing).
+  The usage of `tag_verb` and `tag_noun` please refer [here](https://drive.google.com/drive/folders/16fUv5rrZmt06Ty3QAEweDpveC-84RI9Z?usp=sharing).
 
 ### EgoMCQ
 
