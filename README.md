@@ -98,7 +98,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - We have released our pretrained EgoVLP model (EgoClip w/ EgoNCE) with best performance on EgoMCQ (90.7% inter-video & 57.2% intra-video) in [EgoVLP_PT_BEST](https://drive.google.com/file/d/1-cP3Gcg0NGDcMZalgJ_615BQdbFIbcj7/view?usp=sharing).
 
 
-*This checkpoint is used for EPIC-Kitchens, NLQ, MQ, OSSC, and PNR tasks, except for Charades-Ego. Since we found that VLP (CC3M+WebVid2M, EgoClip) alway degrades significantly on Charades-Ego after the first epoch, we evaluate Charades-Ego using the first pretraining epoch weights of EgoVLP in [EgoVLP_PT_EPO1](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)*.
+*This checkpoint is used for EPIC-Kitchens, NLQ, MQ, OSSC, and PNR tasks, except for Charades-Ego. Since we found that VLP (CC3M+WebVid2M, EgoClip) alway degrades significantly on Charades-Ego after the first epoch, we evaluate Charades-Ego using the first pretraining epoch weights of EgoVLP in [EgoVLP_PT_EPO1](https://drive.google.com/file/d/10lRA4Fldt-c5Azh5D2Zvjwi-_YR5ve5e/view?usp=sharing)*.
 
 ## 🔧 Downstream Tasks
 ### EPIC-Kitchens MIR
@@ -132,7 +132,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 
 | Model  | Mode        | # Frames | Video-Text PT     | Weights | mAP  |
 | ------ | ----------- | -------- | ----------------- | ----------------- | ---- |
-| EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [EgoVLP_PT_EPO1](https://drive.google.com/file/d/108BR5TmIA-sfX3cXOW_wxtJtc4XhglO6/view?usp=sharing)                  | 25.0 |
+| EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [EgoVLP_PT_EPO1](https://drive.google.com/file/d/10lRA4Fldt-c5Azh5D2Zvjwi-_YR5ve5e/view?usp=sharing)                  | 25.0 |
 | EgoVLP | Fine-tuning w/ InfoNCE| 16       | EgoClip w/ EgoNCE | [EgoVLP_FT_CHARADES](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)                  | **32.1** |
 
 - Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 ./run/train_epic.py --config ./configs/ft/charades.json`
