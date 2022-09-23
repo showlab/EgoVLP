@@ -14,10 +14,11 @@
 
 ## 📢 News
 
-- [2022.6.3] We release the arXiv paper.
-- [2022.6.10] We release the EgoClip pretraining dataset.
-- [2022.6.20] Our EgoVLP won [**1st place** in OSCC](https://eval.ai/web/challenges/challenge-page/1627/overview) & [**2nd place** in NLQ](https://eval.ai/web/challenges/challenge-page/1629/overview) & [**3rd place** in PNR](https://eval.ai/web/challenges/challenge-page/1622/overview) @ [Ego4D  Challenge 2022](https://ego4d-data.org/docs/challenge/), and [**1st place** in Multi-Instance Retrieval](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details) @ [EPIC-Kitchens Challenge 2022](https://epic-kitchens.github.io/2022), hosted by CVPR 2022.
+- [2022.9.15] EgoVLP got accepted by [**NeurIPS 2022**](https://nips.cc/)! We will further complete the code and guidelines in the next phase.
 - [2022.6.30] We release the first version of the EgoVLP codebase.
+- [2022.6.20] Our EgoVLP won [**1st place** in OSCC](https://eval.ai/web/challenges/challenge-page/1627/overview) & [**2nd place** in NLQ](https://eval.ai/web/challenges/challenge-page/1629/overview) & [**3rd place** in PNR](https://eval.ai/web/challenges/challenge-page/1622/overview) @ [Ego4D  Challenge 2022](https://ego4d-data.org/docs/challenge/), and [**1st place** in Multi-Instance Retrieval](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details) @ [EPIC-Kitchens Challenge 2022](https://epic-kitchens.github.io/2022), hosted by CVPR 2022.
+- [2022.6.10] We release the EgoClip pretraining dataset.
+- [2022.6.3] We release the arXiv paper.
 
 ## 📝 Preparation
 ### Install dependencies 
