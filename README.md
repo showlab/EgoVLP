@@ -143,8 +143,8 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 
 ### NLQ
 - **Preparation:** Make sure you have prepared the NLQ videos and metadata.
-- Extract video features: `python3 ./run/test_nlq.py --subsample 'text'`.
-- Extract text features: `python3 ./run/test_nlq.py --subsample 'video'`.
+- Extract video features: `python3 ./run/test_nlq.py --subsample 'video'`.
+- Extract text features: `python3 ./run/test_nlq.py --subsample 'text'`.
 - Fine-tune the [VSLNet](https://github.com/EGO4D/episodic-memory/tree/main/NLQ/VSLNet) by replacing its input video-text features.
 
 ### MQ
