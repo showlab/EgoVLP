@@ -4,7 +4,7 @@ import random
 import pickle
 import numpy as np
 import pandas as pd
-sys.path.append('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/')
+
 
 from base.base_dataset import TextVideoDataset
 from data_loader.transforms import init_transform_dict, init_video_transform_dict
@@ -119,8 +119,8 @@ if __name__ == "__main__":
         "num_frames": 4,
         "loading": "lax"
         },
-        data_dir="/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-rgb-frames",
-        meta_dir="/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations",
+        data_dir="dataset/epic-kitchens/epic-kitchens-rgb-frames",
+        meta_dir="dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations",
         tsfms=init_video_transform_dict()['test'],
         reader='cv2_epic',
         split='train'

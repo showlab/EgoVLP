@@ -4,7 +4,6 @@ import argparse
 import collections
 import transformers
 from sacred import Experiment
-sys.path.append("/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP")
 
 import torch
 import data_loader.data_loader as module_data
@@ -143,7 +142,7 @@ if __name__ == '__main__':
         local_rank = 0
 
     args = argparse.ArgumentParser(description='PyTorch Template')
-    args.add_argument('-c', '--config', default='/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/configs/ft/charades.json', type=str,
+    args.add_argument('-c', '--config', default='configs/ft/charades.json', type=str,
                       help='config file path (default: None)')
     args.add_argument('-r', '--resume', default=None, type=str,
                       help='path to latest checkpoint (default: None)')

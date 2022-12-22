@@ -5,7 +5,6 @@ import json
 import tqdm
 import numpy as np
 import pandas as pd
-sys.path.append('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/')
 
 from base.base_dataset import TextVideoDataset
 from data_loader.transforms import init_transform_dict, init_video_transform_dict
@@ -23,8 +22,8 @@ class ObjectStateChangeClassification(TextVideoDataset):
         with open(os.path.join(self.meta_dir, target_split_fp)) as f:
             anno_json = json.load(f)
 
-        self.cfg_DATA_CLIPS_SAVE_PATH = '/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/hand/frames_jpeg'
-        self.cfg_DATA_NO_SC_SPLIT_PATH = '/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/hand/frames_jpeg_neg'
+        self.cfg_DATA_CLIPS_SAVE_PATH = 'dataset/ego4d/benchmark_splits/hand/frames_jpeg'
+        self.cfg_DATA_NO_SC_SPLIT_PATH = 'dataset/ego4d/benchmark_splits/hand/frames_jpeg_neg'
         self.cfg_DATA_SAMPLING_FPS = 2
         self.cfg_DATA_CLIP_LEN_SEC = 8
         self.num_frames = self.cfg_DATA_SAMPLING_FPS * self.cfg_DATA_CLIP_LEN_SEC
@@ -267,8 +266,8 @@ if __name__ == "__main__":
         "input_res": 224,
         "num_frames": 16,
         },
-        data_dir="/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data",
-        meta_dir="/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/hand/",
+        data_dir="dataset/ego4d_256/data",
+        meta_dir="dataset/ego4d/benchmark_splits/hand/",
         tsfms=init_video_transform_dict()[split],
         reader='cv2',
         split=split

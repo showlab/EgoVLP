@@ -5,7 +5,7 @@ from pathlib import Path
 from utils import read_json
 
 
-def setup_logging(save_dir, log_config='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/logger/logger_config.json', default_level=logging.INFO):
+def setup_logging(save_dir, log_config='logger/logger_config.json', default_level=logging.INFO):
     """
     Setup logging configuration
     """

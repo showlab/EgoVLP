@@ -4,8 +4,8 @@ import sys
 import subprocess
 from multiprocessing import Pool, Value
 
-folder_path = './dataset/ego4d/'
-output_path = './dataset/ego4d_256/'
+folder_path = '/ego4d/data'
+output_path = '/ego4d_256/data'
 
 def videos_resize(videoinfos):
     global count
@@ -30,5 +30,8 @@ if __name__ == "__main__":
     for id, video in enumerate(mp4_list):
         file_list.append([id, video])
 
-    for file in file_list:
-        videos_resize(file)
+    pool = Pool(4)
+    pool.map(videos_resize, tuple(file_list))
+
+    # for file in file_list:
+    #    videos_resize(file)

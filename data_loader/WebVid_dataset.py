@@ -18,7 +18,7 @@ class WebVid(TextVideoDataset):
             ...
     """
     def _load_metadata(self):
-        metadata_dir = '/apdcephfs/private_qinghonglin/video_dataset/meta_data'
+        metadata_dir = 'dataset/meta_data'
         split_files = {
             'train': 'webvid_training.csv',
             'val': 'webvid_validation.csv',            # there is no test

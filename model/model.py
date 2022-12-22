@@ -30,7 +30,7 @@ class FrozenInTime(BaseModel):
         # pdb.set_trace()
         if self.text_params['model'].startswith('distilbert'):
             self.text_model = AutoModel.from_pretrained('distilbert-base-uncased',
-                   cache_dir='/apdcephfs/share_1367250/qinghonglin/video_codebase/frozen-in-time-main/pretrained/distilbert-base-uncased')
+                   cache_dir='pretrained/distilbert-base-uncased')
         else:
             self.text_model = AutoModel.from_pretrained(text_params['model'])
         self.text_model.train()
@@ -44,7 +44,7 @@ class FrozenInTime(BaseModel):
             vit_init = video_params.get('vit_init', 'imagenet-21k')
             if arch_config == 'base_patch16_224':
                 # vit_model = timm.models.vision_transformer.vit_base_patch16_224(pretrained=pretrained)
-                vit_model = torch.load("/apdcephfs/share_1367250/qinghonglin/video_codebase/frozen-in-time-main/pretrained/jx_vit_base_p16_224-80ecf9dd.pth", map_location="cpu")
+                vit_model = torch.load("pretrained/jx_vit_base_p16_224-80ecf9dd.pth", map_location="cpu")
                 model = SpaceTimeTransformer(num_frames=num_frames,
                                             time_init=time_init,
                                             attention_style=attention_style)

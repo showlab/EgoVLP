@@ -17,7 +17,7 @@
                 "input": "text"
             },
             "projection": "minimal",
-            "load_checkpoint": "/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0510_10/checkpoint-epoch1.pth"
+            "load_checkpoint": "pretrained/egovlp_epo1.pth"
         }
     },
     "data_loader":
@@ -26,8 +26,8 @@
                     "type": "MultiDistTextVideoDataLoader",
                     "args":{
                         "dataset_name": "CharadesEgo",
-                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo_v1_480",
-                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo",
+                        "data_dir": "dataset/charades/CharadesEgo_v1_480",
+                        "meta_dir": "dataset/charades/CharadesEgo",
                         "reader": "cv2_charades",
                         "shuffle": true,
                         "num_workers": 16,
@@ -61,7 +61,7 @@
     "trainer": {
         "epochs": 20,
         "max_samples_per_epoch": 500000,
-        "save_dir": "/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP/results/CharadesEgo_16f",
+        "save_dir": "results/CharadesEgo_16f",
         "save_period": 2,
         "verbosity": 2,
         "monitor": "min val_loss_0",

@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import pandas as pd
-sys.path.append('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/')
+
 
 from base.base_dataset import TextVideoDataset
 from data_loader.transforms import init_transform_dict, init_video_transform_dict
@@ -170,8 +170,8 @@ if __name__ == "__main__":
         "num_frames": 4,
         "loading": "lax"
         },
-        data_dir="/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data_chunked",
-        meta_dir="/apdcephfs/private_qinghonglin/video_dataset/ego4d_toolbox/0_metadata/egovlp",
+        data_dir="dataset/ego4d_256/data_chunked",
+        meta_dir="dataset/ego4d_toolbox/0_metadata/egovlp",
         tsfms=init_video_transform_dict()['test'],
         reader='cv2_egoclip',
         split='val',

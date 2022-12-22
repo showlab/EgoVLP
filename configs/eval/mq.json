@@ -17,15 +17,15 @@
                 "input": "text"
             },
             "projection_dim": 256,
-            "load_checkpoint" : ""
+            "load_checkpoint" : "pretrained/egovlp.pth"
         }
     },
     "data_loader": {
         "type": "TextVideoDataLoader",
         "args": {
             "dataset_name": "Ego4D_MQ",
-            "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data",
-            "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/mq/",
+            "data_dir": "dataset/ego4d_256/data",
+            "meta_dir": "dataset/ego4d/benchmark_splits/mq/",
             "shuffle": true,
             "num_workers": 16,
             "batch_size": 32,
@@ -60,7 +60,7 @@
     "trainer": {
         "epochs": 50,
         "max_samples_per_epoch": 500000,
-        "save_dir": "/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/results/MQ",
+        "save_dir": "results/MQ",
         "save_period": 2,
         "verbosity": 2,
         "monitor": "min val_loss_0",

@@ -17,7 +17,7 @@
                 "input": "text"
             },
             "projection": "minimal",
-            "load_checkpoint": ""
+            "load_checkpoint": "pretrained/charades_ft.pth"
         }
     },
     "data_loader":
@@ -25,8 +25,8 @@
                 "type": "TextVideoDataLoader",
                 "args":{
                     "dataset_name": "CharadesEgo",
-                    "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo_v1_480",
-                    "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo",
+                    "data_dir": "dataset/charades/CharadesEgo_v1_480",
+                    "meta_dir": "dataset/charades/CharadesEgo",
                     "reader": "cv2_charades",
                     "shuffle": true,
                     "num_workers": 16,
@@ -59,7 +59,7 @@
     "trainer": {
         "epochs": 0,
         "max_samples_per_epoch": 500000,
-        "save_dir": "/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP/results/CharadesEgo_16f",
+        "save_dir": "results/CharadesEgo_16f",
         "save_period": 2,
         "verbosity": 2,
         "monitor": "min val_loss_0",

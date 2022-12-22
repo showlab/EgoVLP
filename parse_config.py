@@ -31,13 +31,13 @@ class ConfigParser:
             self.resume = Path(args.resume)
             resume_cfg_fname = self.resume.parent / 'config.json'
             if eval_mode == "epic":
-                resume_cfg_fname = Path('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/configs/eval/epic.json')
+                resume_cfg_fname = Path('configs/eval/epic.json')
             if eval_mode == "charades":
-                resume_cfg_fname = Path('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/configs/eval/charades.json')
+                resume_cfg_fname = Path('configs/eval/charades.json')
             if eval_mode == "nlq":
-                resume_cfg_fname = Path('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/configs/eval/nlq.json')
+                resume_cfg_fname = Path('configs/eval/nlq.json')
             if eval_mode == "mq":
-                resume_cfg_fname = Path('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/configs/eval/mq.json')
+                resume_cfg_fname = Path('configs/eval/mq.json')
 
             config = read_json(resume_cfg_fname)
             if args.config is not None:

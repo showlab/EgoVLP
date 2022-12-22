@@ -17,7 +17,7 @@
                 "input": "text"
             },
             "projection": "minimal",
-            "load_checkpoint" : "/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/pretrained/cc-webvid2m-4f_stformer_b_16_224.pth.tar"
+            "load_checkpoint" : "pretrained/egovlp.pth"
         }
     },
     "data_loader":
@@ -26,8 +26,8 @@
                     "type": "MultiDistTextVideoDataLoader",
                     "args":{
                         "dataset_name": "EgoClip",
-                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data_chunked/",
-                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_toolbox/0_metadata/egovlp",
+                        "data_dir": "dataset/ego4d_256/data_chunked/",
+                        "meta_dir": "dataset/ego4d_toolbox/0_metadata/egovlp",
                         "reader": "cv2_egoclip",
                         "shuffle": true,
                         "num_workers": 16,
@@ -63,7 +63,7 @@
     "trainer": {
         "epochs": 0,
         "max_samples_per_epoch": 500000,
-        "save_dir": "/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/results/EgoClip_4f",
+        "save_dir": "results/EgoClip_4f",
         "save_period": 1,
         "verbosity": 2,
         "monitor": "min val_loss_0",

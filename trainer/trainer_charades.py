@@ -183,7 +183,7 @@ class Multi_Trainer_dist_Charades(Multi_BaseTrainer_dist):
 
         # construct set of sentences.
         cls_arr = []
-        with open('/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo/Charades_v1_classes.txt',
+        with open('dataset/charades/CharadesEgo/Charades_v1_classes.txt',
                   'r') as charades:
             csv_reader = list(reader(charades))
         for line in csv_reader:

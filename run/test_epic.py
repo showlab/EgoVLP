@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 import transformers
 from sacred import Experiment
-sys.path.append("/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP")
 
 import torch
 import torch.nn.functional as F
@@ -123,7 +122,7 @@ def run():
     text_embeds = torch.cat(text_embed_arr)
 
     # considered unique narrations for evaluation of EPIC
-    path_dataframes = '/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations'
+    path_dataframes = 'dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations'
     video_id=pd.read_csv(os.path.join(path_dataframes , "EPIC_100_retrieval_test.csv")).values[:,0]
     text_id=pd.read_csv(os.path.join(path_dataframes , "EPIC_100_retrieval_test_sentence.csv")).values[:,0]
 
@@ -131,7 +130,7 @@ def run():
     for elem in text_id:
         indexes.append(video_id.tolist().index(elem))
 
-    path_relevancy = "/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations/relevancy/caption_relevancy_EPIC_100_retrieval_test.pkl"
+    path_relevancy = "dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations/relevancy/caption_relevancy_EPIC_100_retrieval_test.pkl"
     pkl_file = open(path_relevancy, 'rb')
     relevancy = pickle.load(pkl_file)
 
@@ -161,9 +160,9 @@ if __name__ == '__main__':
     args = argparse.ArgumentParser(description='PyTorch Template')
 
     args.add_argument('-r', '--resume',
-                      # default='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0510_10/checkpoint-epoch1.pth'
-                      # default='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results/EgoClip_EPIC_16f_best_rel_01_margin_02/models/0512_01/checkpoint-epoch100.pth',
-                      default='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results/EgoClip_EPIC_16f_best_rel_01_margin_04_weight/models/0512_02/checkpoint-epoch100.pth',
+                      # default='results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0510_10/checkpoint-epoch1.pth'
+                      # default='results/EgoClip_EPIC_16f_best_rel_01_margin_02/models/0512_01/checkpoint-epoch100.pth',
+                      default='results/EgoClip_EPIC_16f_best_rel_01_margin_04_weight/models/0512_02/checkpoint-epoch100.pth',
                       help='path to latest checkpoint (default: None)')
     args.add_argument('-gpu', '--gpu', default=0, type=str,
                       help='indices of GPUs to enable (default: all)')
@@ -173,7 +172,7 @@ if __name__ == '__main__':
                       help='config file path (default: None)')
     args.add_argument('-s', '--sliding_window_stride', default=-1, type=int,
                       help='test time temporal augmentation, repeat samples with different start times.')
-    args.add_argument('--save_feats', default='/apdcephfs/private_qinghonglin/',
+    args.add_argument('--save_feats', default='',
                       help='path to store text & video feats, this is for saving embeddings if you want to do offline retrieval.')
     args.add_argument('--split', default='test', choices=['train', 'val', 'test'],
                       help='split to evaluate on.')

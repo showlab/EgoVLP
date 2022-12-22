@@ -8,7 +8,6 @@ import pandas as pd
 import transformers
 from csv import reader
 from sacred import Experiment
-sys.path.append("/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP")
 
 import torch
 from model.model import sim_matrix
@@ -96,7 +95,7 @@ def run():
 
     # construct set of sentences.
     cls_arr = []
-    with open('/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo/Charades_v1_classes.txt', 'r') as charades:
+    with open('dataset/charades/CharadesEgo/Charades_v1_classes.txt', 'r') as charades:
         csv_reader = list(reader(charades))
     for line in csv_reader:
         cls_arr.append(line[0][5:])
@@ -146,8 +145,8 @@ if __name__ == '__main__':
     args = argparse.ArgumentParser(description='PyTorch Template')
 
     args.add_argument('-r', '--resume',
-                      default = '/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results/EgoClip_Charades_egonce_16f/models/0513_00/checkpoint-epoch1.pth',
-                      # default='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0509_00/checkpoint-epoch1.pth',
+                      default = 'results/EgoClip_Charades_egonce_16f/models/0513_00/checkpoint-epoch1.pth',
+                      # default='results_egoclip/EgoClip_M_EgoNCE_N_V_Neg_Seg_60/models/0509_00/checkpoint-epoch1.pth',
                       help='path to latest checkpoint (default: None)')
     args.add_argument('-gpu', '--gpu', default=0, type=str,
                       help='indices of GPUs to enable (default: all)')

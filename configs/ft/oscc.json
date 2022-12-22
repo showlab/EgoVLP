@@ -18,7 +18,7 @@
             },
             "projection": "minimal",
             "projection_dim": 2,
-            "load_checkpoint": ""
+            "load_checkpoint" : "pretrained/egovlp.pth"
         }
     },
     "data_loader":
@@ -26,8 +26,8 @@
                     "type": "MultiDistTextVideoDataLoader",
                     "args":{
                         "dataset_name": "Ego4D_OSCC",
-                        "data_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d_256/data",
-                        "meta_dir": "/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/hand/",
+                        "data_dir": "dataset/ego4d_256/data",
+                        "meta_dir": "dataset/ego4d/benchmark_splits/hand/",
                         "shuffle": true,
                         "num_workers": 16,
                         "batch_size": 4,
@@ -61,7 +61,7 @@
     "trainer": {
         "epochs": 100,
         "max_samples_per_epoch": 500000,
-        "save_dir": "/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP/results/OSSC",
+        "save_dir": "results/OSSC",
         "save_period": 2,
         "verbosity": 2,
         "monitor": "min val_loss_0",

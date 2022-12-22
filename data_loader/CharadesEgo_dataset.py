@@ -2,7 +2,6 @@ import os
 import sys
 import csv
 import pandas as pd
-sys.path.append('/apdcephfs/private_qinghonglin/video_codebase/EgoVLP/')
 
 from base.base_dataset import TextVideoDataset
 try:
@@ -173,8 +172,8 @@ if __name__ == "__main__":
         "num_frames": 4,
         "loading": "lax"
         },
-        data_dir="/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo_v1_480",
-        meta_dir="/apdcephfs/private_qinghonglin/video_dataset/charades/CharadesEgo",
+        data_dir="dataset/charades/CharadesEgo_v1_480",
+        meta_dir="dataset/charades/CharadesEgo",
         tsfms=init_video_transform_dict()['test'],
         reader='cv2_charades',
         split='val'

@@ -258,7 +258,7 @@ def mir_metrics(similarity_matrix, idx_arr):
     # considered unique narrations for evaluation of EPIC
     metrics = {}
 
-    path_dataframes = '/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations'
+    path_dataframes = 'dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations'
     video_id=pd.read_csv(os.path.join(path_dataframes , "EPIC_100_retrieval_test.csv")).values[:,0]
     text_id=pd.read_csv(os.path.join(path_dataframes , "EPIC_100_retrieval_test_sentence.csv")).values[:,0]
     similarity_matrix = (similarity_matrix + 1) / 2
@@ -278,7 +278,7 @@ def mir_metrics(similarity_matrix, idx_arr):
 
     similarity_matrix = similarity_matrix.T[:,indexes]
 
-    path_relevancy = "/apdcephfs/private_qinghonglin/video_dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations/relevancy/caption_relevancy_EPIC_100_retrieval_test.pkl"
+    path_relevancy = "dataset/epic-kitchens/epic-kitchens-100-annotations-master/retrieval_annotations/relevancy/caption_relevancy_EPIC_100_retrieval_test.pkl"
     pkl_file = open(path_relevancy, 'rb')
     relevancy = pickle.load(pkl_file)
 

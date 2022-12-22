@@ -5,7 +5,6 @@ import argparse
 import numpy as np
 import transformers
 from sacred import Experiment
-sys.path.append("/apdcephfs/share_1367250/qinghonglin/video_codebase/EgoVLP")
 
 import torch
 import model.metric as module_metric
@@ -93,7 +92,7 @@ if __name__ == '__main__':
     args = argparse.ArgumentParser(description='PyTorch Template')
 
     args.add_argument('-r', '--resume',
-                      default='/apdcephfs/private_qinghonglin/video_codebase/frozen-in-time-main/results_egoclip/EgoClip_SE_1_mid_scale_th_v2/models/0502_01/checkpoint-epoch4.pth',
+                      default='results_egoclip/EgoClip_SE_1_mid_scale_th_v2/models/0502_01/checkpoint-epoch4.pth',
                       help='path to latest checkpoint (default: None)')
     args.add_argument('-d', '--device', default=None, type=str,
                       help='indices of GPUs to enable (default: all)')
@@ -101,7 +100,7 @@ if __name__ == '__main__':
                       help='config file path (default: None)')
     args.add_argument('-s', '--sliding_window_stride', default=-1, type=int,
                       help='test time temporal augmentation, repeat samples with different start times.')
-    args.add_argument('--save_feats', default='/apdcephfs/private_qinghonglin/video_dataset/ego4d/benchmark_splits/mq/egovlp',
+    args.add_argument('--save_feats', default='dataset/ego4d/benchmark_splits/mq/egovlp',
                       help='path to store text & video feats, this is for saving embeddings if you want to do offline retrieval.')
     args.add_argument('--split', default='test', choices=['train', 'val', 'test'],
                       help='split to evaluate on.')

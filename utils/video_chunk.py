@@ -8,8 +8,8 @@ import subprocess
 import pandas as pd
 from csv import reader, writer
 
-video_dir = './dataset/ego4d_256/'
-output_dir = './dataset/ego4d_chunked/'
+video_dir = 'dataset/ego4d_256/'
+output_dir = 'dataset/ego4d_chunked/'
 
 save_dir = os.path.join(output_dir)
 if not os.path.exists(save_dir):
@@ -60,10 +60,10 @@ def video2segments(infos):
     return
 
 if __name__ == "__main__":
-    with open('./dataset/manifest.csv', 'r') as csv:
+    with open('dataset/manifest.csv', 'r') as csv:
         csv_reader = list(reader(csv))[1:]
 
-    downloaded = os.listdir('./dataset/ego4d')
+    downloaded = os.listdir('dataset/ego4d')
 
     uid_list = []
     infos_list = []
