@@ -15,7 +15,7 @@
 
 ## 📢 News
 
-- [2022.12.22] We update the codebase and provide direct downloaded video features for NLQ & MQ, Ego4D challenges.
+- [2022.12.22] We clean the codebase and provide directly downloaded video features for NLQ & MQ, Ego4D challenges.
 - [2022.9.15] EgoVLP got accepted by [**NeurIPS 2022**](https://nips.cc/)!
 - [2022.6.30] We release the first version of the EgoVLP codebase.
 - [2022.6.20] Our EgoVLP won [**1st place** in OSCC](https://eval.ai/web/challenges/challenge-page/1627/overview) & [**2nd place** in NLQ](https://eval.ai/web/challenges/challenge-page/1629/overview) & [**3rd place** in PNR](https://eval.ai/web/challenges/challenge-page/1622/overview) @ [Ego4D  Challenge 2022](https://ego4d-data.org/docs/challenge/), and [**1st place** in Multi-Instance Retrieval](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details) @ [EPIC-Kitchens Challenge 2022](https://epic-kitchens.github.io/2022), hosted by CVPR 2022.
@@ -25,9 +25,8 @@
 ## 📝 Preparation
 ### Install dependencies 
 ```bash
-conda create -n egovlp python=3.6
+conda env create -f environment.yml
 source activate egovlp
-pip install -r requirements.txt
 ```
 
 ### Ego4D videos and metadata
@@ -208,7 +207,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 | TimeSformer | ImageNet Init. | 0.616
 | TimeSformer | EgoVLP | 0.622 |
 
-^ We found VLP no help in the PNR task.
+^ We found VLP effect is minor in the PNR task.
 
 ## 🎓 Citation
 
