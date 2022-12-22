@@ -10,13 +10,12 @@
 
 > **TL;DR:** We pioneer Egocentric Video-Language Pretraining from pretraining dataset, model and development benchmark; the resulted pretrained model exhibits strong performance on five downstream tasks across three egocentric datasets.
 
-[comment]: <> (<img src="figures/egovlp_framework.jpg" alt="EgoVLP" style="zoom:67%;" />)
 ![EgoVLP](figures/egovlp_framework.jpg)
 
 ## 📢 News
 
-- [2022.12.22] We clean the codebase and provide directly downloaded video features for NLQ & MQ, Ego4D challenges.
-- [2022.9.15] EgoVLP got accepted by [**NeurIPS 2022**](https://nips.cc/)!
+- [2022.12.22] We clean the code and provide video features to power NLQ & MQ, Ego4D challenges.
+- [2022.9.15] EgoVLP got accepted by [**NeurIPS 2022**](https://nips.cc/) as **Spotlight**!
 - [2022.6.30] We release the first version of the EgoVLP codebase.
 - [2022.6.20] Our EgoVLP won [**1st place** in OSCC](https://eval.ai/web/challenges/challenge-page/1627/overview) & [**2nd place** in NLQ](https://eval.ai/web/challenges/challenge-page/1629/overview) & [**3rd place** in PNR](https://eval.ai/web/challenges/challenge-page/1622/overview) @ [Ego4D  Challenge 2022](https://ego4d-data.org/docs/challenge/), and [**1st place** in Multi-Instance Retrieval](https://codalab.lisn.upsaclay.fr/competitions/617#learn_the_details) @ [EPIC-Kitchens Challenge 2022](https://epic-kitchens.github.io/2022), hosted by CVPR 2022.
 - [2022.6.10] We release the EgoClip pretraining dataset.
@@ -105,6 +104,8 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 
 ^ This checkpoint is used for EPIC-Kitchens, NLQ, MQ, OSSC, and PNR tasks, except for Charades-Ego. Since we found that VLP (CC3M+WebVid2M, EgoClip) alway degrades significantly on Charades-Ego after the first epoch, we evaluate Charades-Ego using the first pretraining epoch weights of EgoVLP in [EgoVLP_PT_EPO1](https://drive.google.com/file/d/10lRA4Fldt-c5Azh5D2Zvjwi-_YR5ve5e/view?usp=sharing).
 
+^^ You can use our checkpoint to power other egocentric video benchmarks. :)
+
 ## 🔧 Downstream Tasks
 ### EPIC-Kitchens MIR
 
@@ -148,7 +149,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - **Preparation:** 
 
 1. Make sure you have prepared the NLQ metadata. 
-2. For the video branch, download the EgoVLP clip-level features for NLQ.
+2. For the video branch, download the EgoVLP clip-level features for NLQ. ^ We get these dense video features (fps=1.87) by script `run/test_nlq.py`.
    - [NLQ Train & Val](https://drive.google.com/file/d/1TXBlLDqDuL_XPCuXlgiikEfVXO8Ly6eM/view)
    - [NLQ Test](https://drive.google.com/file/d/1-CGZg9t-kpW5bmg9M62VHk5eYTllsPKV/view)
 3. For the text branch, you can extract EgoVLP text features: `python3 run/test_nlq.py --subsample 'text'` or use our pretrained text encoder.
@@ -169,7 +170,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 - **Preparation:**
 
 1. Make sure you have prepared the MQ metadata.
-2. Download the EgoVLP clip-level features for MQ.
+2. Download the EgoVLP clip-level features for MQ. ^ We get these dense video features (fps=1.87) by script `run/test_mq.py`.
    - [MQ Train & Val]( https://drive.google.com/file/d/1-HEUCdyfNX7CBZhz40yiyTr7to_p7wUi/view )
    - [MQ Test]( https://drive.google.com/file/d/1-JmezY3eIkHKJ1JBA_AA8QWBoY3W2HpS/view)
 3. Fine-tune the [VSGN](https://github.com/EGO4D/episodic-memory/tree/main/MQ) or other methods by replacing their input video features.
