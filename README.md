@@ -141,7 +141,7 @@ This code is built on PyTorch with DistributedDataParallel (DDP). We pretrain Eg
 | EgoVLP | Zero-shot   | 16       | EgoClip w/ EgoNCE | [EgoVLP_PT_EPO1](https://drive.google.com/file/d/10lRA4Fldt-c5Azh5D2Zvjwi-_YR5ve5e/view?usp=sharing)                  | 25.0 |
 | EgoVLP | Fine-tuning w/ InfoNCE| 16       | EgoClip w/ EgoNCE | [EgoVLP_FT_CHARADES](https://drive.google.com/file/d/1-xWVDH7XO4pi6Hj5QRpKVz6y-QkqcFlQ/view?usp=sharing)                  | **32.1** |
 
-- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 run/train_epic.py --config configs/ft/charades.json`
+- Train: `python3 -m torch.distributed.launch --nnodes=$HOST_NUM  --node_rank=$INDEX  --nproc_per_node $HOST_GPU_NUM --master_port 8081 run/train_charades.py --config configs/ft/charades.json`
 
 - Test: `python3 run/test_charades.py`
 
