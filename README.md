@@ -1,9 +1,3 @@
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/egocentric-video-language-pretraining/multi-instance-retrieval-on-epic-kitchens-100)](https://paperswithcode.com/sota/multi-instance-retrieval-on-epic-kitchens-100?p=egocentric-video-language-pretraining)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/egocentric-video-language-pretraining/action-recognition-on-charades-ego)](https://paperswithcode.com/sota/action-recognition-on-charades-ego?p=egocentric-video-language-pretraining)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/egocentric-video-language-pretraining/natural-language-queries-on-ego4d)](https://paperswithcode.com/sota/natural-language-queries-on-ego4d?p=egocentric-video-language-pretraining)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/egocentric-video-language-pretraining/moment-queries-on-ego4d)](https://paperswithcode.com/sota/moment-queries-on-ego4d?p=egocentric-video-language-pretraining)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/egocentric-video-language-pretraining/object-state-change-classification-on-ego4d)](https://paperswithcode.com/sota/object-state-change-classification-on-ego4d?p=egocentric-video-language-pretraining)
-
 # EgoVLP: Egocentric Video-Language Pretraining
 
 [Project page](https://qinghonglin.github.io/EgoVLP/) | [arXiv](https://arxiv.org/pdf/2206.01670.pdf)
