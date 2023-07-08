@@ -26,8 +26,8 @@ def video2segments(infos):
     if not os.path.exists(output_uid_dir):
         os.makedirs(output_uid_dir)
 
-    if index % num_partition != partition:
-        return
+    # if index % num_partition != partition:
+        # return
 
     assert os.path.exists(input_path)
 
