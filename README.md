@@ -8,6 +8,7 @@
 
 ## 📢 News
 
+- [2022.7.12] We release [**EgoVLPv2**](https://shramanpramanick.github.io/EgoVLPv2/), with stronger performance and higher efficiency, which has been accepted by [**ICCV 2023**](https://iccv2023.thecvf.com/)!
 - [2022.12.22] We clean the code and provide video features to power NLQ & MQ, Ego4D challenges.
 - [2022.9.15] EgoVLP got accepted by [**NeurIPS 2022**](https://nips.cc/) as **Spotlight**!
 - [2022.6.30] We release the first version of the EgoVLP codebase.
