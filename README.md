@@ -41,7 +41,7 @@ source activate egovlp
   ```python
   import pandas as pd
   
-  metadata = pd.read_csv('dataset/egoclip_metadata.csv', sep='\t', error_bad_lines=False)
+  metadata = pd.read_csv('dataset/egoclip.csv', sep='\t', error_bad_lines=False)
   print(metadata.shape[0])
   print(metadata.iloc[0])
   
